@@ -1,0 +1,11 @@
+{% comment %} {% extends 'base.html' %} {% endcomment %}
+
+{% comment %} {% block title %}Register{% endblock %} {% endcomment %}
+
+{% comment %} {% block content %} {% endcomment %}
+<form method="POST">
+    {% csrf_token %}
+    {{ form }}
+    <button type="submit"> Signup </button>
+</form>
+{% comment %} {% endblock %} {% endcomment %}
