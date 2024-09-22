@@ -16,7 +16,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from resume import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('resume-form/', views.resume_form, name="resume_form"),
 ]
