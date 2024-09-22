@@ -1,0 +1,307 @@
+{% load custom_filters %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ user_profile.full_name }}'s Resume</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-k6RqeWeci5ZR/Lv4MR0sA0FfDOM22fK5p7U9H1T8+z4E6g1b7kDoh4Dg8W1XgzB" crossorigin="anonymous">
+    
+    <style>
+        body {
+            font-family: 'Libre Baskerville', serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .red-hr {
+            border-color: red; /* Adjust border color */
+        }
+        
+        .right-align {
+            float: right;
+        }
+        .skill-badge {
+            display: inline-block;
+            background-color: #f0f0f0; 
+            border-radius: 10px; 
+            padding: 3px 8px; 
+            margin: 2px; /* Adjusted margin */
+            font-size: 12px; 
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        a {
+            text-decoration: none; /* Remove underline */
+            color: inherit; /* Use the current text color */
+        }
+    </style>
+    
+</head>
+<body>
+    <div class="container">
+        <!-- Resume Header -->
+        <div class="text-center">
+            <h1 class="mb-0">{{ user_profile.full_name }}</h1>
+            <p class="mb-0">{{ user_profile.location }}</p>
+            <div class="contact-info">
+                <p class="small mb-0">
+                    <i class="fas fa-phone mr-0"></i>
+                    <span class="mr-2">+91 {{ user_profile.phone_number }}</span>  
+                    
+                    <i class="fas fa-envelope mr-0"></i>
+                        <a href="mailto:{{ user_profile.email }}">
+                            <span class="mr-2">{{ user_profile.email }}</span>
+                        </a> 
+                    {% if user_profile.linkedin %}
+                        <i class="fab fa-linkedin mr-0"></i> 
+                        <a href="{{ user_profile.linkedin }}" target="_blank">
+                            <!-- <span class="mr-2">linkedin.com/in/{{ user_profile.linkedin }}</span> -->
+                            <span class="mr-2">Linkedin</span>
+                        </a> 
+                    {% endif %}
+                    {% if user_profile.github %}
+                        <i class="fab fa-github mr-0"></i>
+                        <a href="{{ user_profile.github }}" target="_blank">
+                            <!-- <span class="mr-2">github.com/{{ user_profile.github }}</span> -->
+                            <span class="mr-2">GitHub</span>
+                        </a> 
+                    {% endif %}
+                <!-- </p>
+                <p class="small mt-0"> -->
+                    {% if user_profile.portfolio %}
+                        <i class="fa-solid fa-user-tie mr-0"></i> 
+                        <a href="{{ user_profile.portfolio }}" target="_blank" class="mr-2">
+                            My Portfolio
+                        </a> 
+                    {% endif %}
+                    {% if user_profile.leetcode %}
+                        <img width="12" height="12" class="mr-0 mb-2" src="https://img.icons8.com/external-tal-revivo-color-tal-revivo/24/external-level-up-your-coding-skills-and-quickly-land-a-job-logo-color-tal-revivo.png" alt="external-level-up-your-coding-skills-and-quickly-land-a-job-logo-color-tal-revivo"/>
+                        <a href="{{ user_profile.leetcode }}" target="_blank" class="mr-2">
+                            LeetCode
+                        </a> 
+                    {% endif %}
+                    {% if user_profile.gfg %}
+                        <img width="15" height="15" class="mr-0 mb-2" src="https://img.icons8.com/color/48/GeeksforGeeks.png" alt="GeeksforGeeks"/>
+                        <a href="{{ user_profile.gfg }}" target="_blank" class="mr-2">
+                            GFG
+                        </a> 
+                    {% endif %}
+                    {% if user_profile.hackerrank %}
+                        <i class="fab fa-hackerrank mr-0"></i>
+                        <a href="{{ user_profile.hackerrank }}" target="_blank" class="mr-2">
+                            HackerRank
+                        </a> 
+                    {% endif %}
+                    {% if user_profile.hackerearth %}
+                        <i class="cib-hackerearth mr-0"></i>
+                        <a href="{{ user_profile.hackerearth }}" target="_blank" class="mr-2">
+                            HackerEarth
+                        </a> 
+                    {% endif %}
+                    {% if user_profile.other_link %}
+                        <i class="fa-solid fa-link mr-0"></i>
+                        <a href="{{ user_profile.other_link }}" target="_blank" class="mr-2">
+                            {{ user_profile.other_link }}
+                        </a> 
+                    {% endif %}
+                </p>
+                                
+            </div>
+        </div>
+
+        <!-- Summary -->
+        <div>
+            <h5 class="text-danger mb-0 mt-2">Profile Summary</h5><hr class="mt-0 mb-1 red-hr" >
+            <p class="mt-0 mb-0 small">{{ user_profile.summary }}</p>
+        </div>
+
+        <!-- Education Section -->
+        
+        <div>
+            <h5 class="text-danger mb-0 mt-2">Education</h5><hr class="mt-0 mb-1 red-hr" >
+            <div>
+                <strong>{{ user_profile.college }}
+                    <span style="float: right;">{{ user_profile.start_year_college }} - {{ user_profile.end_year_college }}</span>
+                </strong>
+                <p class="small">
+                    <em>{{ user_profile.degree_college }} - {{ user_profile.specialization }} 
+                        <strong>
+                                {% if user_profile.grade_type_college == "percentage" %}
+                                    - Percentage : {{ user_profile.percentage_college }}%
+                                {% elif user_profile.grade_type_college == "cgpa" %}
+                                    - CGPA : {{ user_profile.percentage_college }}
+                                {% endif %}
+                        </strong>
+                        <span style="float: right;">{{ user_profile.college_location }}</span>
+                    </em>
+                </p>
+            </div> 
+            
+            <div>
+                <strong>{{ user_profile.institution_12 }}
+                    <span style="float: right;">{{ user_profile.end_year_12 }}</span>
+                </strong>
+                <p class="small">
+                    <em>{{ user_profile.board_12 }} - {{ user_profile.degree_12 }} 
+                        <strong>
+                            {% if user_profile.grade_type_12 == "percentage" %}
+                                - Percentage : {{ user_profile.percentage_12 }}%
+                            {% elif user_profile.grade_type_12 == "cgpa" %}
+                                - CGPA : {{ user_profile.percentage_12 }}
+                            {% endif %}
+                        </strong>
+                        <span style="float: right;">{{ user_profile.institution_12_location }}</span>
+                    </em>
+                </p>
+            </div>
+            {% if user_profile.institution_10 != None and user_profile.institution_10 != "" %}
+                <div>
+                    <strong>{{ user_profile.institution_10 }}
+                        <span style="float: right;">{{ user_profile.end_year_10 }}</span>
+                    </strong>
+                    <p class="small mb-0">
+                        <em>{{ user_profile.board_10 }} - {{ user_profile.degree_10 }} 
+                            <strong>
+                                {% if user_profile.grade_type_10 == "percentage" %}
+                                    - Percentage : {{ user_profile.percentage_10 }}%
+                                {% elif user_profile.grade_type_10 == "cgpa" %}
+                                    - CGPA : {{ user_profile.percentage_10 }}
+                                {% endif %}
+                            </strong>
+                            <span style="float: right;">{{ user_profile.institution_10_location }}</span>
+                        </em>
+                    </p>
+                </div>
+            {% endif %}
+        </div> 
+        
+        <!-- Skills Section -->
+        <div>
+            <h5 class="text-danger mb-0 mt-2">Technical Skills</h5><hr class="mt-0 mb-1 red-hr" >
+            <p class="mt-0 mb-0 small">
+                <strong> Languages:</strong>
+                {% for l in user_profile.languages|split:"," %}
+                    <span class="skill-badge">{{ l|trim }}</span>
+                {% endfor %}<br class="m-0 p-0">
+                {% if user_profile.frameworks != None and user_profile.frameworks != "" %}
+                    <strong> Technologies/Frameworks:</strong>
+                    {% for f in user_profile.frameworks|split:"," %}
+                        <span class="skill-badge">{{ f|trim }}</span>
+                    {% endfor %} <br class="m-0 p-0">
+                {% endif %}
+                {% if user_profile.other_skills != None and user_profile.other_skills != "" %}
+                    <strong > Other:</strong>
+                    {% for o in user_profile.other_skills|split:"," %}
+                        <span class="skill-badge">{{ o|trim }}</span>
+                    {% endfor %}
+                {% endif %}
+            </p>
+        </div>
+
+
+        <!-- Projects Section -->
+        <div>
+            <h5 class="text-danger mb-0 mt-2">Projects</h5><hr class="mt-0 mb-1 red-hr" >
+            <div class="item mb-0">
+                {% if user_profile.project_link_1 is not None and user_profile.project_link_1 != "" %}
+                    <strong><u><a href="{{ user_profile.project_link_1 }}" class="redirect-link" target="_blank">{{ user_profile.project_title_1 }}</u> <i class="fas fa-external-link-alt fa-sm mb-1"></i></a></strong> | <em>{{ user_profile.technologies_used_1 }}</em>
+                {% else %}
+                    <strong>{{ user_profile.project_title_1 }}</strong> | {{ user_profile.technologies_used_1 }}
+                {% endif %}
+                <ul class="">
+                    {% for point in user_profile.project_description_1|split_newline %}
+                        <li class="small">{{ point }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% if user_profile.project_title_2 is not None and user_profile.project_title_2 != "" %}
+            <div class="item mb-0 mt-0">
+                {% if user_profile.project_link_2 is not None and user_profile.project_link_2 != "" %}
+                    <strong><u><a href="{{ user_profile.project_link_2 }}" class="redirect-link" target="_blank">{{ user_profile.project_title_2 }}</u> <i class="fas fa-external-link-alt fa-sm mb-1"></i></a></strong> | <em>{{ user_profile.technologies_used_2 }}</em>
+                {% else %}
+                    <strong>{{ user_profile.project_title_2 }}</strong> | <em>{{ user_profile.technologies_used_2 }}</em>
+                {% endif %}
+                <ul class="mb-0">
+                    {% for point in user_profile.project_description_2|split_newline %}
+                        <li class="small">{{ point }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+        </div>
+
+        <!-- Work Experience Section -->
+        <div>
+            {% if user_profile.job_title_1 != None and user_profile.job_title_1 != "" %}
+                <h5 class="text-danger mb-0 mt-2">Work Experience</h5><hr class="mt-0 mb-1 red-hr" >
+                <div class="mb-0">
+                    <strong>{{ user_profile.company_name_1 }}</strong>
+                    {% if user_profile.start_date_1 != None and user_profile.end_date_1 != None  %}
+                        <span class="small" style="float: right;">{{ user_profile.start_date_1 }} - {{ user_profile.end_date_1 }}</span>
+                    {% endif %}
+                    <p class="small mb-0">
+                        <em><u>{{ user_profile.job_title_1 }}</u>
+                            {% if user_profile.job_mode_1 != None and user_profile.job_mode_1 != "" %}
+                                <span style="float: right;">{{ user_profile.job_mode_1 }}</span>
+                            {% endif %}
+                        </em>
+                    </p>
+                    <ul >
+                        {% for point in user_profile.job_description_1|split_newline %}
+                            <li class="small">{{ point }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+
+            {% if user_profile.job_title_2 is not None and user_profile.job_title_2 != "" %}
+            <div class="">
+                <strong>{{ user_profile.company_name_2 }}</strong>
+                <span class="small" style="float: right;">{{ user_profile.start_date_2 }} - {{ user_profile.end_date_2 }}</span>
+                <p class="small mb-0">
+                    <em><u>{{ user_profile.job_title_2 }}</u>
+                        <span style="float: right;">{{ user_profile.job_mode_2 }}</span>
+                    </em>
+                </p>
+                <ul class="">
+                    {% for point in user_profile.job_description_2|split_newline %}
+                        <li class="small">{{ point }}</li>
+                    {% endfor %}
+                </ul>
+            </div> 
+            {% endif %}
+        </div>
+
+        <!-- Awards and Achievements Section -->
+        <div>
+            {% if user_profile.award != None and user_profile.award != "" %}
+                <h5 class="text-danger mb-0 mt-2">Awards and Achievements</h5><hr class="mt-0 mb-1 red-hr" >
+                <ul>
+                    {% for point in user_profile.award|split_newline %}
+                        <li class="small">{{ point }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+
+        <!-- Certifications Section -->
+        <div>
+            {% if user_profile.certifications != None and user_profile.certifications != "" %}
+                <h5 class="text-danger mb-0 mt-1">Certificationsments</h5><hr class="mt-0 mb-1 red-hr" >
+                <ul>
+                    {% for point in user_profile.certifications|split_newline %}
+                        <li class="small">{{ point }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -4,6 +4,9 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.db import IntegrityError
+import pdfkit
+from django.template import loader
+from django.http import HttpResponse
 
 # Create your views here.
 def register(request):
@@ -139,3 +142,23 @@ def resume_form(request):
             return render(request, 'resume/resume_form.html', {'error': 'There was an error saving your data. Please try again.'})
 
     return render(request, "resume/resume_form.html")
+
+def resume(request, id):
+    user_profile = Profile.objects.get(pk=id)
+    template = loader.get_template('resume/resume_template.html')
+    html = template.render({'user_profile': user_profile})
+
+    options = {
+        'page-size': 'Letter',
+        'encoding': 'UTF-8',
+        'margin-top': '12mm',  
+        'margin-right': '5mm',  
+        'margin-bottom': '0mm', 
+        'margin-left': '5mm',   
+    }
+    pdf = pdfkit.from_string(html, False, options)
+    
+    response = HttpResponse(pdf, content_type='application/pdf')
+    response['Content-Disposition'] = 'attachment; filename="resume.pdf"'
+    
+    return response
