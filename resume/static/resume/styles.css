@@ -1,0 +1,102 @@
+/* Global Styles */
+body {
+    background-color: #121212;
+    color: #e0e0e0;
+}
+
+.navbar {
+    border-bottom: 1px solid #444;
+}
+
+.nav-link {
+    color: #e0e0e0;
+}
+
+.nav-link:hover {
+    color: #ffffff;
+}
+
+.btn-primary {
+    background-color: #7738ee;
+    border-color: #7738ee;
+}
+
+.btn-primary:hover {
+    background-color: #5a2d8c;
+    border-color: #5a2d8c;
+}
+
+.btn-info {
+    background-color: #8e44ad;
+    border-color: #8e44ad;
+}
+
+.btn-info:hover {
+    background-color: #6d2c91;
+    border-color: #6d2c91;
+}
+
+h1, p {
+    color: #e0e0e0;
+}
+
+.container {
+    margin-top: 20px;
+}
+
+/* Form Styles */
+.form-control {
+    background-color: #1f1f1f;
+    color: #e0e0e0;
+    border: 1px solid #444;
+}
+
+.form-control:focus {
+    background-color: #1f1f1f;
+    color: #e0e0e0;
+    border-color: #7738ee;
+    box-shadow: 0 0 0 0.2rem rgba(119, 56, 238, 0.25);
+}
+
+.btn {
+    border-radius: 5px;
+}
+
+hr {
+    border-color: #444;
+}
+
+.alert-danger {
+    background-color: #e74c3c;
+    color: #fff;
+    border-color: #d9534f;
+}
+
+/* Resume Card Styles */
+.resume-card {
+    margin-bottom: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    background-color: #8e44ad;
+}
+
+.resume-card h4 {
+    margin-bottom: 10px;
+}
+
+.resume-card p {
+    margin: 5px 0;
+}
+
+.download-btn {
+    font-size: 1em;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.download-btn:hover {
+    background-color: white;
+    color: #fff;
+}

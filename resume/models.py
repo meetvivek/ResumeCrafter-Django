@@ -14,7 +14,6 @@ class Profile(models.Model):
     phone_number = models.CharField(max_length=15)
     email = models.EmailField()
     location = models.CharField(max_length=100)
-
     linkedin = models.CharField(blank=True, null=True, max_length=100)
     github = models.CharField(blank=True, null=True, max_length=100)
     portfolio = models.URLField(blank=True, null=True)

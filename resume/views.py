@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import Profile
-from django.contrib.auth.forms import UserCreationForm
+from .forms import RegisterForm
+from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.db import IntegrityError
@@ -11,12 +12,14 @@ from django.http import HttpResponse
 # Create your views here.
 def register(request):
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = RegisterForm(request.POST)
         if form.is_valid():
             form.save()
+            username = form.cleaned_data.get('username').lower()
+            messages.success(request, f"Congratulations, {username}! Your account has been successfully crafted. Let’s build your resume!")
             return redirect('login')
     else:
-        form = UserCreationForm(request.POST)
+        form = RegisterForm()
     return render(request, 'resume/register.html', {'form': form})
 
 def login_view(request):
@@ -26,6 +29,7 @@ def login_view(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
+            messages.success(request, f"Hello again, {username}! Let's get crafting that perfect resume!")
             return redirect('home')
         else:
             # Invalid login credentials
