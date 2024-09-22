@@ -14,7 +14,7 @@ def register(request):
         form = UserCreationForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('home')
+            return redirect('login')
     else:
         form = UserCreationForm(request.POST)
     return render(request, 'resume/register.html', {'form': form})
@@ -41,6 +41,7 @@ def logout_view(request):
 def home_view(request):
     return render(request, 'resume/base.html')
 
+@login_required
 def resume_form(request):
     if request.method == 'POST':
         profile_data = {
@@ -134,7 +135,7 @@ def resume_form(request):
                 defaults=profile_data
             )
             # Redirect to a success page or another URL
-            return redirect('home')  # Replace 'success_url' with your actual success URL
+            return redirect('resumes')  # Replace 'success_url' with your actual success URL
         
         except IntegrityError as e:
             # Handle database integrity error (e.g., unique constraint violations)
@@ -163,6 +164,7 @@ def resume(request, id):
     
     return response
 
+@login_required
 def view_resumes(request):
     profiles = Profile.objects.filter(user=request.user)
     return render(request, "resume/view_resumes.html", {'profiles': profiles})

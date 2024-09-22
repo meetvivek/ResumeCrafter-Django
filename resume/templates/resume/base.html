@@ -10,7 +10,7 @@
 </head>
 <body class="bg-dark text-light">
     <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="{% url 'home' %}">
             <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-file-person mb-1" viewBox="0 0 16 16">
                 <path d="M12 1a1 1 0 0 1 1 1v10.755S12 11 8 11s-5 1.755-5 1.755V2a1 1 0 0 1 1-1zM4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
                 <path d="M8 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
@@ -30,7 +30,7 @@
                 <h1 class="display-4">Welcome to the ResumeCrafter</h1>
                 <p class="lead">Create your resume in simple steps</p>
                 <a href="{% url 'resume_form' %}" class="btn btn-primary btn-lg mx-2">Start Creating Your Resume</a>
-                <a href="#" class="btn btn-info btn-lg mx-2">Download Your Resume</a>
+                <a href="{% url 'resumes' %}" class="btn btn-info btn-lg mx-2">Download Your Resume</a>
             </div>
         </div>
     </div>
