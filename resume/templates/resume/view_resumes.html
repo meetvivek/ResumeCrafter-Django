@@ -1,0 +1,27 @@
+{% extends 'resume/base.html' %}
+
+{% block title %}Form{% endblock %}
+
+{% block content %}
+{% comment %} {% for profile in profiles %}
+    <a href="resume/{{profile.id}}" class="btn btn-danger"> Download </a>
+{% endfor %} {% endcomment %}
+
+<div class="container">
+    <h1 class="text-center mb-4">Available Resumes</h1>
+    <div class="row">
+        {% for profile in profiles %}
+            <div class="col-md-4">
+                <div class="resume-card">
+                    <h4>{{ profile.full_name }}</h4>
+                    <p><strong>Course Title:</strong> {{ profile.course_title }}</p>
+                    <p><strong>Course Branch:</strong> {{ profile.course_branch }}</p>
+                    <p><strong>Email:</strong> {{ profile.email }}</p>
+                    <p><strong>Location:</strong> {{ profile.location }}</p>
+                    <a href="/{{ profile.id }}" class="btn btn-dark download-btn">Download</a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

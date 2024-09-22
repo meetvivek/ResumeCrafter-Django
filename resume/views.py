@@ -162,3 +162,7 @@ def resume(request, id):
     response['Content-Disposition'] = 'attachment; filename="resume.pdf"'
     
     return response
+
+def view_resumes(request):
+    profiles = Profile.objects.filter(user=request.user)
+    return render(request, "resume/view_resumes.html", {'profiles': profiles})
