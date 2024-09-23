@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Profile
 from .forms import RegisterForm
 from django.contrib import messages
@@ -144,6 +144,19 @@ def resume_form(request):
             return render(request, 'resume/resume_form.html', {'error': 'There was an error saving your data. Please try again.'})
 
     return render(request, "resume/resume_form.html")
+
+@login_required
+def delete_profile(request, profile_id):
+    # Get the profile by id and make sure it belongs to the logged-in user
+    profile = get_object_or_404(Profile, id=profile_id, user=request.user)
+
+    if request.method == 'POST':
+        # Delete the profile instance
+        profile.delete()
+        messages.success(request, "Profile deleted successfully.")
+        return redirect('resumes')  # Redirect to the list of resumes or another relevant page
+
+    return render(request, 'resume/delete_confirm.html', {'profile': profile})
 
 def resume(request, id):
     user_profile = Profile.objects.get(pk=id)

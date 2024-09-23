@@ -28,7 +28,7 @@
     <div class="row">
         {% if profiles %}
             {% for profile in profiles %}
-                <div class="col-md-4">
+                <div class="col-md-6">
                     <div class="resume-card">
                         <h4>{{ profile.full_name }}</h4>
                         <hr style="border-color: white !important;">
@@ -37,7 +37,7 @@
                         <p><strong>Location:</strong> {{ profile.location }}</p>
                         <p><strong>Date Created:</strong> {{ profile.date }}</p>
                         <div class="d-flex justify-content-end">
-                            <a href="#" style="margin-right: 10px;"class="btn btn-custom btn-sm ">Edit</a>
+                            <a href="/delete/{{ profile.id }}" style="margin-right: 10px;"class="btn btn-custom-danger btn-sm ">Delete</a>
                             <a href="/{{ profile.id }}" class="btn btn-custom btn-sm ">Download</a>
                         </div>
                     </div>
