@@ -4,33 +4,49 @@
 {% block title %}Register{% endblock %}
 
 {% block content %}
-<div class="container py-5">
-    <div class="row justify-content-center">
-        <div class="col-md-6">
-            <h2 class="text-center mb-4">Register</h2>
-            <form method="POST" class="bg-secondary p-4 rounded">
-                {% csrf_token %}
-                <div class="form-group">
-                    <label for="{{ form.username.id_for_label }}">{{ form.username.label }}</label>
-                    <input type="text" class="form-control" id="{{ form.username.id_for_label }}" name="{{ form.username.name }}" value="{{ form.username.value|default:'' }}">
-                </div>
-                <div class="form-group">
-                    <label for="{{ form.email.id_for_label }}">{{ form.email.label }}</label>
-                    <input type="email" class="form-control" id="{{ form.email.id_for_label }}" name="{{ form.email.name }}" value="{{ form.email.value|default:'' }}">
-                </div>
-                <div class="form-group">
-                    <label for="{{ form.password1.id_for_label }}">{{ form.password1.label }}</label>
-                    <input type="password" class="form-control" id="{{ form.password1.id_for_label }}" name="{{ form.password1.name }}">
-                </div>
-                <div class="form-group">
-                    <label for="{{ form.password2.id_for_label }}">{{ form.password2.label }}</label>
-                    <input type="password" class="form-control" id="{{ form.password2.id_for_label }}" name="{{ form.password2.name }}">
-                </div>
-                <button type="submit" class="btn btn-primary btn-block">Signup</button>
-            </form>
-            <div class="text-center mt-3">
-                <a href="{% url 'login' %}" class="text-light">Already have an account? Login here</a>
+<div class="container-fluid vh-100 d-flex justify-content-center align-items-center">
+    <div class="col-md-5" style="margin-top: -100px;">
+        <h2 class="text-center" style="color: #418da6;">REGISTER</h2>
+        <form method="POST" class="p-4 rounded shadow">
+            {% csrf_token %}
+            
+            <!-- Username Field -->
+            <div class="form-group">
+                <label for="{{ form.username.id_for_label }}">{{ form.username.label }}</label>
+                <input type="text" class="form-control custom-input" id="{{ form.username.id_for_label }}" name="{{ form.username.name }}" value="{{ form.username.value|default:'' }}" required>
             </div>
+            
+            <!-- Email Field -->
+            <div class="form-group">
+                <label for="{{ form.email.id_for_label }}">{{ form.email.label }}</label>
+                <input type="email" class="form-control custom-input" id="{{ form.email.id_for_label }}" name="{{ form.email.name }}" value="{{ form.email.value|default:'' }}" required>
+            </div>
+            
+            <!-- Password1 Field -->
+            <div class="form-group">
+                <label for="{{ form.password1.id_for_label }}">{{ form.password1.label }}</label>
+                <input type="password" class="form-control custom-input" id="{{ form.password1.id_for_label }}" name="{{ form.password1.name }}" required>
+            </div>
+            
+            <!-- Password2 Field -->
+            <div class="form-group">
+                <label for="{{ form.password2.id_for_label }}">{{ form.password2.label }}</label>
+                <input type="password" class="form-control custom-input" id="{{ form.password2.id_for_label }}" name="{{ form.password2.name }}" required>
+            </div>
+            
+            <!-- Error Handling for All Fields -->
+            {% if first_error %}
+                <div class="text-danger text-center mb-1" style="margin-top: -10px !important;">
+                    {{ first_error }}  {# Display the first error #}
+                </div>
+            {% endif %}
+            <button type="submit" class="btn btn-custom btn-block">Signup</button>
+        </form>
+        
+        <div class="text-center mt-2">
+            Already have an account? <a href="{% url 'login' %}" style="color: #418da6; text-decoration: underline; transition: text-shadow 0.3s ease, color 0.3s ease;" onmouseover="this.style.color='#418da6'; this.style.textShadow='0 0 8px #418da6';" onmouseout="this.style.color='#418da6'; this.style.textShadow='none';">
+            <u>Login here</u>
+            </a>
         </div>
     </div>
 </div>

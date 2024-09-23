@@ -2,11 +2,32 @@
 
 {% block title %}Form{% endblock %}
 
+{% block custom_styles %}
+<style>
+    body {
+        overflow: auto; /* Allow scrolling on this page */
+    }
+
+    ::-webkit-scrollbar {
+        width: 8px; 
+        background: #1c243c;
+    }
+    
+    ::-webkit-scrollbar-thumb {
+        background: #babcbb;
+        border-radius: 10px; 
+
+    }
+
+    
+</style>
+{% endblock %}
+
 {% block content %}
 
     <div class="container mb-4">
-        <h2 class="mt-3 mb-5 text-center">USER RESUME FORM</h2>
-        <form method="POST">
+        <h2 class="mt-3 mb-5 text-center" style="color: #418da6;">USER RESUME FORM</h2>
+        <form method="POST" id="myForm">
             {% csrf_token %}
             
             {% if error %}
@@ -19,66 +40,66 @@
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="full_name">Full Name <span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" id="full_name" name="full_name" placeholder="Enter your full name" required>
+                    <input type="text" class="form-control custom-input" id="full_name" name="full_name" placeholder="Enter your full name" required>
                 </div>
                 <div class="form-group col-md-6">
                     <label for="phone_number">Phone Number <span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" id="phone_number" name="phone_number" placeholder="Enter your phone number" required>
+                    <input type="text" class="form-control custom-input" id="phone_number" name="phone_number" placeholder="Enter your phone number" required>
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="email">Email Address <span class="text-danger">*</span></label>
-                    <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" required autocomplete="email">
+                    <input type="email" class="form-control custom-input" id="email" name="email" placeholder="Enter your email" required autocomplete="email">
                 </div>
                 <div class="form-group col-md-6">
                     <label for="location">Location <span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" id="location" name="location" placeholder="Enter your location" required>
+                    <input type="text" class="form-control custom-input" id="location" name="location" placeholder="Enter your location" required>
                 </div>
             </div>
 
             <div class="form-row">
                 <div class="form-group col-md-4">
                     <label for="linkedin">LinkedIn Profile</label>
-                    <input type="url" class="form-control" id="linkedin" name="linkedin" placeholder="Enter your LinkedIn profile URL">
+                    <input type="url" class="form-control custom-input" id="linkedin" name="linkedin" placeholder="Enter your LinkedIn profile URL">
                 </div>
                 <div class="form-group col-md-4">
                     <label for="github">GitHub Profile</label>
-                    <input type="url" class="form-control" id="github" name="github" placeholder="Enter your GitHub URL">
+                    <input type="url" class="form-control custom-input" id="github" name="github" placeholder="Enter your GitHub URL">
                 </div>
                 <div class="form-group col-md-4">
                     <label for="portfolio">Portfolio</label>
-                    <input type="url" class="form-control" id="portfolio" name="portfolio" placeholder="Enter your Portfolio URL">
+                    <input type="url" class="form-control custom-input" id="portfolio" name="portfolio" placeholder="Enter your Portfolio URL">
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-4">
                     <label for="leetcode">LeetCode Profile</label>
-                    <input type="url" class="form-control" id="leetcode" name="leetcode" placeholder="Enter your LeetCode profile URL">
+                    <input type="url" class="form-control custom-input" id="leetcode" name="leetcode" placeholder="Enter your LeetCode profile URL">
                 </div>
                 <div class="form-group col-md-4">
                     <label for="gfg">GFG Profile</label>
-                    <input type="url" class="form-control" id="gfg" name="gfg" placeholder="Enter your GFG profile URL">
+                    <input type="url" class="form-control custom-input" id="gfg" name="gfg" placeholder="Enter your GFG profile URL">
                 </div>
                 <div class="form-group col-md-4">
                     <label for="hackerrank">HackerRank profile</label>
-                    <input type="url" class="form-control" id="hackerrank" name="hackerrank" placeholder="Enter your HackerRank profile URL">
+                    <input type="url" class="form-control custom-input" id="hackerrank" name="hackerrank" placeholder="Enter your HackerRank profile URL">
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="email">HackerEarth Porfile</label>
-                    <input type="url" class="form-control" id="hackerearth" name="hackerearth" placeholder="Enter your HackerEarth profile URL">
+                    <input type="url" class="form-control custom-input" id="hackerearth" name="hackerearth" placeholder="Enter your HackerEarth profile URL">
                 </div>
                 <div class="form-group col-md-6">
                     <label for="location">Other URL</label>
-                    <input type="url" class="form-control" id="other_link" name="other_link" placeholder="Enter any Other URL">
+                    <input type="url" class="form-control custom-input" id="other_link" name="other_link" placeholder="Enter any Other URL">
                 </div>
             </div>
 
             <div class="form-group">
                 <label for="summary">Summary <span class="text-danger">*</span></label>
-                <textarea class="form-control" id="summary" name="summary" placeholder="Enter your profile summary" required></textarea>
+                <textarea class="form-control custom-input" id="summary" name="summary" placeholder="Enter your profile summary" required></textarea>
             </div>
 
 
@@ -88,31 +109,31 @@
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="institution_10">Institution Name</label>
-                    <input type="text" class="form-control" id="institution_10" name="institution_10" placeholder="Eg. DAV Public School, etc.">
+                    <input type="text" class="form-control custom-input" id="institution_10" name="institution_10" placeholder="Eg. DAV Public School, etc.">
                 </div>
                 <div class="form-group col-md-6">
                     <label for="institution_10_location">Institution Location</label>
-                    <input type="text" class="form-control" id="institution_10_location" name="institution_10_location" placeholder="Eg. New Delhi - 110070">
+                    <input type="text" class="form-control custom-input" id="institution_10_location" name="institution_10_location" placeholder="Eg. New Delhi - 110070">
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="degree_10">Degree</label>
-                    <input type="text" class="form-control" id="degree_10" name="degree_10" placeholder="Eg. High School - 10th">
+                    <input type="text" class="form-control custom-input" id="degree_10" name="degree_10" placeholder="Eg. High School - 10th">
                 </div>
                 <div class="form-group col-md-6">
                     <label for="end_year_10">End Year</label>
-                    <input type="number" class="form-control" id="end_year_10" name="end_year_10" placeholder="Eg. 2019, 2020, 2021. ">
+                    <input type="number" class="form-control custom-input" id="end_year_10" name="end_year_10" placeholder="Eg. 2019, 2020, 2021. ">
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-4">
                     <label for="board_10">Board</label>
-                    <input type="text" class="form-control" id="board_10" name="board_10" placeholder="Eg. CBSE, ICSE, Any State Board">
+                    <input type="text" class="form-control custom-input" id="board_10" name="board_10" placeholder="Eg. CBSE, ICSE, Any State Board">
                 </div>
                 <div class="form-group col-md-4">
                     <label for="grade_type_10">Grade Type</label>
-                    <select class="form-control" id="grade_type_10" name="grade_type_10">
+                    <select class="custom-select" id="grade_type_10" name="grade_type_10">
                         <option value="" disabled selected>Select Grade Type</option>
                         <option value="percentage">Percentage</option>
                         <option value="cgpa">CGPA</option>
@@ -121,7 +142,7 @@
                 
                 <div class="form-group col-md-4">
                     <label for="percentage_10">Grade</label>
-                    <input type="text" class="form-control" id="percentage_10" name="percentage_10" placeholder="Eg. Percentage : 92.78, 81.2 | CGPA : 8.78, 8.42">
+                    <input type="text" class="form-control custom-input" id="percentage_10" name="percentage_10" placeholder="Eg. Percentage : 92.78 | CGPA : 8.78">
                 </div>
             </div>
 
@@ -131,31 +152,31 @@
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="institution_12">Institution Name <span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" id="institution_12" name="institution_12" placeholder="Enter your 12th institution" required>
+                    <input type="text" class="form-control custom-input" id="institution_12" name="institution_12" placeholder="Enter your 12th institution" required>
                 </div>
                 <div class="form-group col-md-6">
                     <label for="institution_12_location">Institution Location <span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" id="institution_12_location" name="institution_12_location" placeholder="Eg. New Delhi - 110070" required>
+                    <input type="text" class="form-control custom-input" id="institution_12_location" name="institution_12_location" placeholder="Eg. New Delhi - 110070" required>
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="degree_12">Degree <span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" id="degree_12" name="degree_12" placeholder="Eg. Higher secondary education (12th) | Diploma in - Electronics Engineering" required>
+                    <input type="text" class="form-control custom-input" id="degree_12" name="degree_12" placeholder="Eg. Higher secondary education (12th) | Diploma in - Electronics Engineering" required>
                 </div>
                 <div class="form-group col-md-6">
                     <label for="end_year_12">End Year <span class="text-danger">*</span></label>
-                    <input type="number" class="form-control" id="end_year_12" name="end_year_12" placeholder="Eg. 2019, 2020, 2021. " required>
+                    <input type="number" class="form-control custom-input" id="end_year_12" name="end_year_12" placeholder="Eg. 2019, 2020, 2021. " required>
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-4">
                     <label for="board_12">Board <span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" id="board_12" name="board_12" placeholder="Eg. 12th : CBSE, ICSE | Diploma : BTE" required>
+                    <input type="text" class="form-control custom-input" id="board_12" name="board_12" placeholder="Eg. 12th : CBSE, ICSE | Diploma : BTE" required>
                 </div>
                 <div class="form-group col-md-4">
                     <label for="grade_type_12">Grade Type</label>
-                    <select class="form-control" id="grade_type_12" name="grade_type_12">
+                    <select class="custom-select" id="grade_type_12" name="grade_type_12">
                         <option value="" disabled selected>Select Grade Type</option>
                         <option value="percentage">Percentage</option>
                         <option value="cgpa">CGPA</option>
@@ -163,7 +184,7 @@
                 </div>
                 <div class="form-group col-md-4">
                     <label for="percentage_12">Grade</label>
-                    <input type="text" class="form-control" id="percentage_12" name="percentage_12" placeholder="Eg. Percentage : 92.78, 81.2 | CGPA : 8.78, 8.42">
+                    <input type="text" class="form-control custom-input" id="percentage_12" name="percentage_12" placeholder="Eg. Percentage : 92.78 | CGPA : 8.78">
                 </div>
             </div>
 
@@ -173,35 +194,35 @@
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="college">College Name <span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" id="college" name="college" placeholder="Enter your college name" required>
+                    <input type="text" class="form-control custom-input" id="college" name="college" placeholder="Enter your college name" required>
                 </div>
                 <div class="form-group col-md-6">
                     <label for="college_location">College Location <span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" id="college_location" name="college_location" placeholder="Eg. New Delhi - 110070" required>
+                    <input type="text" class="form-control custom-input" id="college_location" name="college_location" placeholder="Eg. New Delhi - 110070" required>
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="degree_college">Degree <span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" id="degree_college" name="degree_college" placeholder="Eg. B.Tech, BCA, MBA, BBA" required>
+                    <input type="text" class="form-control custom-input" id="degree_college" name="degree_college" placeholder="Eg. B.Tech, BCA, MBA, BBA" required>
                 </div>
                 <div class="form-group col-md-6">
                     <label for="specialization">Specialization <span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" id="specialization" name="specialization" placeholder="Eg. Computer Science & Engineering, Finance, Auccounting" required>
+                    <input type="text" class="form-control custom-input" id="specialization" name="specialization" placeholder="Eg. Computer Science & Engineering, Finance, Auccounting" required>
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-3">
                     <label for="start_year_college">Start Year <span class="text-danger">*</span></label>
-                    <input type="number" class="form-control" id="start_year_college" name="start_year_college" placeholder="Enter the Start year" required>
+                    <input type="number" class="form-control custom-input" id="start_year_college" name="start_year_college" placeholder="Enter the Start year" required>
                 </div>
                 <div class="form-group col-md-3">
                     <label for="end_year_college">End Year <span class="text-danger">*</span></label>
-                    <input type="number" class="form-control" id="end_year_college" name="end_year_college" placeholder="Enter the End year" required>
+                    <input type="number" class="form-control custom-input" id="end_year_college" name="end_year_college" placeholder="Enter the End year" required>
                 </div>
                 <div class="form-group col-md-3">
                     <label for="grade_type_college">Grade Type</label>
-                    <select class="form-control" id="grade_type_college" name="grade_type_college">
+                    <select class="custom-select" id="grade_type_college" name="grade_type_college">
                         <option value="" disabled selected>Select Grade Type</option>
                         <option value="percentage">Percentage</option>
                         <option value="cgpa">CGPA</option>
@@ -209,7 +230,7 @@
                 </div>
                 <div class="form-group col-md-3">
                     <label for="percentage_college">Grade</label>
-                    <input type="text" class="form-control" id="percentage_college" name="percentage_college" placeholder="Eg. Percentage : 92.78, 81.2 | CGPA : 8.78, 8.42">
+                    <input type="text" class="form-control custom-input" id="percentage_college" name="percentage_college" placeholder="Eg. Percentage:92.7 | CGPA:8.7">
                 </div>
             </div>
 
@@ -218,15 +239,15 @@
             <hr>
             <div class="form-group">
                 <label for="skill">Languages <span class="text-danger">*</span></label>
-                <input type="text" class="form-control" id="languages" name="languages" placeholder="Enter your languages (comma-separated) Eg. Pthon, Java, C, C++" required>
+                <input type="text" class="form-control custom-input" id="languages" name="languages" placeholder="Enter your languages (comma-separated) Eg. Pthon, Java, C, C++" required>
             </div>
             <div class="form-group">
                 <label for="frameworks">Technologies / Frameworks</label>
-                <input type="text" class="form-control" id="frameworks" name="frameworks" placeholder="Enter your technologies/frameworks (comma-separated) Eg. Django, Flask, Git, Github, Bootstrap">
+                <input type="text" class="form-control custom-input" id="frameworks" name="frameworks" placeholder="Enter your technologies/frameworks (comma-separated) Eg. Django, Flask, Git, Github, Bootstrap">
             </div>
             <div class="form-group">
                 <label for="other_skills">Other Technologies / Skills</label>
-                <input type="text" class="form-control" id="other_skills" name="other_skills" placeholder="Enter your other technologies/skills (comma-separated) Eg. Graphics Desgning, DBMS, Computer Networks">
+                <input type="text" class="form-control custom-input" id="other_skills" name="other_skills" placeholder="Enter your other technologies/skills (comma-separated) Eg. Graphics Desgning, DBMS, Computer Networks">
             </div>
 
             <!-- Projects -->
@@ -236,19 +257,19 @@
             <H5 class="mb-3"> <em>Enter 1st project details:</em></H5>
             <div class="form-group">
                 <label for="project_title_1">Project Title <span class="text-danger">*</span></label>
-                <input type="text" class="form-control" id="project_title_1" name="project_title_1" placeholder="Enter project title "required>
+                <input type="text" class="form-control custom-input" id="project_title_1" name="project_title_1" placeholder="Enter project title "required>
             </div>
             <div class="form-group">
                 <label for="project_description_1">Project Description <span class="text-danger small">* Note: Each new line will be converted into a bullet point.</span></label>
-                <textarea class="form-control" id="project_description_1" name="project_description_1" placeholder="Enter project description (Use new lines for each points)" required></textarea>
+                <textarea class="form-control custom-input" id="project_description_1" name="project_description_1" placeholder="Enter project description (Use new lines for each points)" required></textarea>
             </div>
             <div class="form-group">
                 <label for="technologies_used_1">Technologies Used <span class="text-danger small">* </span></label>
-                <input type="text" class="form-control" id="technologies_used_1" name="technologies_used_1" placeholder="Enter technologies used (comma-separated) Eg. Django, Python, pdfkit, HTML, CSS, Bootstrap" required>
+                <input type="text" class="form-control custom-input" id="technologies_used_1" name="technologies_used_1" placeholder="Enter technologies used (comma-separated) Eg. Django, Python, pdfkit, HTML, CSS, Bootstrap" required>
             </div>
             <div class="form-group">
                 <label for="project_link_1">Project Url</label>
-                <input type="url" class="form-control" id="project_link_1" name="project_link_1" placeholder="Enter Project Url">
+                <input type="url" class="form-control custom-input" id="project_link_1" name="project_link_1" placeholder="Enter Project Url">
             </div>
         </div>
         <div class="container">
@@ -258,19 +279,19 @@
             <H5 class="mb-3"> <em>Enter 2nd project details:</em></H5>
             <div class="form-group">
                 <label for="project_title_2">Project Title </label>
-                <input type="text" class="form-control" id="project_title_2" name="project_title_2" placeholder="Enter project title">
+                <input type="text" class="form-control custom-input" id="project_title_2" name="project_title_2" placeholder="Enter project title">
             </div>
             <div class="form-group">
                 <label for="project_description_2">Project Description <span class="text-danger small">Note: Each new line will be converted into a bullet point.</span></label>
-                <textarea class="form-control" id="project_description_2" name="project_description_2" placeholder="Enter project description (Use new lines for each points)"></textarea>
+                <textarea class="form-control custom-input" id="project_description_2" name="project_description_2" placeholder="Enter project description (Use new lines for each points)"></textarea>
             </div>
             <div class="form-group">
                 <label for="technologies_used_2">Technologies Used</label>
-                <input type="text" class="form-control" id="technologies_used_2" name="technologies_used_2" placeholder="Enter technologies used (comma-separated) Eg. Django, Python, pdfkit, HTML, CSS, Bootstrap">
+                <input type="text" class="form-control custom-input" id="technologies_used_2" name="technologies_used_2" placeholder="Enter technologies used (comma-separated) Eg. Django, Python, pdfkit, HTML, CSS, Bootstrap">
             </div>
             <div class="form-group">
                 <label for="project_link_2">Project Url</label>
-                <input type="url" class="form-control" id="project_link_2" name="project_link_2" placeholder="Enter Project Url">
+                <input type="url" class="form-control custom-input" id="project_link_2" name="project_link_2" placeholder="Enter Project Url">
             </div>
         </div>
 
@@ -282,30 +303,33 @@
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="job_title_1">Job Title</label>
-                    <input type="text" class="form-control" id="job_title_1" name="job_title_1" placeholder="Eg. Software Engineering, Python Developer">
+                    <input type="text" class="form-control custom-input" id="job_title_1" name="job_title_1" placeholder="Eg. Software Engineering, Python Developer">
                 </div>
                 <div class="form-group col-md-6">
                     <label for="job_mode_1">Job Mode</label>
-                    <input type="text" class="form-control" id="job_mode_1" name="job_mode_1" placeholder="Eg. : Onsite, Remote, Hybrid">
+                    <input type="text" class="form-control custom-input" id="job_mode_1" name="job_mode_1" placeholder="Eg. : Onsite, Remote, Hybrid">
                 </div>
             </div>
             <div class="form-group">
                 <label for="company_name_1">Company Name</label>
-                <input type="text" class="form-control" id="company_name_1" name="company_name_1" placeholder="Enter company name">
+                <input type="text" class="form-control custom-input" id="company_name_1" name="company_name_1" placeholder="Enter company name">
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="start_date_1">Start Date</label>
-                    <input type="date" class="form-control" id="start_date_1" name="start_date_1">
+                    <div class="date-picker-container">
+                        <input type="date" class="form-control custom-input" id="start_date_1" name="start_date_1">
+                    </div>
                 </div>
+                
                 <div class="form-group col-md-6">
                     <label for="end_date_1">End Date</label>
-                    <input type="date" class="form-control" id="end_date_1" name="end_date_1">
+                    <input type="date" class="form-control custom-input" id="end_date_1" name="end_date_1">
                 </div>
             </div>
             <div class="form-group">
                 <label for="job_description_1">Job Description <span class="text-danger small">Each new line will be converted into a bullet point.</span></label>
-                <textarea class="form-control" id="job_description_1" name="job_description_1" placeholder="Enter job description"></textarea>
+                <textarea class="form-control custom-input" id="job_description_1" name="job_description_1" placeholder="Enter job description"></textarea>
             </div>
         </div>
 
@@ -318,30 +342,30 @@
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="job_title_2">Job Title</label>
-                    <input type="text" class="form-control" id="job_title_2" name="job_title_2" placeholder="Eg. Software Engineering, Python Developer ">
+                    <input type="text" class="form-control custom-input" id="job_title_2" name="job_title_2" placeholder="Eg. Software Engineering, Python Developer ">
                 </div>
                 <div class="form-group col-md-6">
                     <label for="job_mode_2">Job Mode</label>
-                    <input type="text" class="form-control" id="job_mode_2" name="job_mode_2" placeholder="Eg. Onsite, Remote, Hybrid">
+                    <input type="text" class="form-control custom-input" id="job_mode_2" name="job_mode_2" placeholder="Eg. Onsite, Remote, Hybrid">
                 </div>
             </div>
             <div class="form-group">
                 <label for="company_name_2">Company Name 2</label>
-                <input type="text" class="form-control" id="company_name_2" name="company_name_2" placeholder="Enter company name">
+                <input type="text" class="form-control custom-input" id="company_name_2" name="company_name_2" placeholder="Enter company name">
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="start_date_2">Start Date</label>
-                    <input type="date" class="form-control" id="start_date_2" name="start_date_2">
+                    <input type="date" class="form-control custom-input" id="start_date_2" name="start_date_2">
                 </div>
                 <div class="form-group col-md-6">
                     <label for="end_date_2">End Date</label>
-                    <input type="date" class="form-control" id="end_date_2" name="end_date_2">
+                    <input type="date" class="form-control custom-input" id="end_date_2" name="end_date_2">
                 </div>
             </div>
             <div class="form-group">
                 <label for="job_description_2">Job Description <span class="text-danger small">Each new line will be converted into a bullet point.</span></label>
-                <textarea class="form-control" id="job_description_2" name="job_description_2" placeholder="Enter job description"></textarea>
+                <textarea class="form-control custom-input" id="job_description_2" name="job_description_2" placeholder="Enter job description"></textarea>
             </div>
         </div>
             <!-- Awards and Achievements -->
@@ -349,7 +373,7 @@
             <hr>
             <div class="form-group">
                 <label for="award">Awards</label>
-                <textarea class="form-control" id="award" name="award" placeholder="Enter awards and achievements"></textarea>
+                <textarea class="form-control custom-input" id="award" name="award" placeholder="Enter awards and achievements"></textarea>
             </div>
 
             <!-- Certifications -->
@@ -357,11 +381,14 @@
             <hr>
             <div class="form-group">
                 <label for="certifications">Certifications</label>
-                <textarea class="form-control" id="certifications" name="certifications" placeholder="Enter certifications"></textarea>
+                <textarea class="form-control custom-input" id="certifications" name="certifications" placeholder="Enter certifications"></textarea>
             </div>
 
-            <button type="submit" class="btn btn-primary mt-4">Submit</button>
-            <button type="reset" class="btn btn-secondary mt-4 ">Reset</button>
+            <div class="d-flex justify-content-end mt-4">
+                <button type="reset" class="btn btn-custom" style="margin-right: 10px;" onclick="document.getElementById('myForm').reset();window.scrollTo(0, 0);">Reset</button>
+                <button type="submit" class="btn btn-custom">Submit</button>
+                
+            </div>
         </form>
     </div>
 {% endblock %}

@@ -2,33 +2,53 @@
 
 {% block title %}Form{% endblock %}
 
+{% block custom_styles %}
+<style>
+    body {
+        overflow: auto; /* Allow scrolling on this page */
+    }
+
+    ::-webkit-scrollbar {
+        width: 8px; 
+        background: #1c243c;
+    }
+    
+    ::-webkit-scrollbar-thumb {
+        background: #babcbb;
+        border-radius: 10px; 
+
+    }
+</style>
+{% endblock %}
+
 {% block content %}
-{% comment %} {% for profile in profiles %}
-    <a href="resume/{{profile.id}}" class="btn btn-danger"> Download </a>
-{% endfor %} {% endcomment %}
 
 <div class="container">
-    <h1 class="text-center mb-4 mt-3">Available Resumes</h1>
+    <h2 class="text-center mb-4 mt-3" style="color: #418da6;">AVIAILABLE RESUMES</h2>
     <div class="row">
         {% if profiles %}
             {% for profile in profiles %}
                 <div class="col-md-4">
                     <div class="resume-card">
                         <h4>{{ profile.full_name }}</h4>
-                        <p><strong>Course Title:</strong> {{ profile.course_title }}</p>
-                        <p><strong>Course Branch:</strong> {{ profile.course_branch }}</p>
+                        <hr style="border-color: white !important;">
                         <p><strong>Email:</strong> {{ profile.email }}</p>
+                        <p><strong>Phone Number:</strong> +91 {{ profile.phone_number }}</p>
                         <p><strong>Location:</strong> {{ profile.location }}</p>
-                        <a href="/{{ profile.id }}" class="btn btn-dark download-btn">Download</a>
+                        <p><strong>Date Created:</strong> {{ profile.date }}</p>
+                        <div class="d-flex justify-content-end">
+                            <a href="#" style="margin-right: 10px;"class="btn btn-custom btn-sm ">Edit</a>
+                            <a href="/{{ profile.id }}" class="btn btn-custom btn-sm ">Download</a>
+                        </div>
                     </div>
                 </div>
             {% endfor %}
         {% else %}
-        <div class="container text-center my-5">
-            <div class="alert alert-warning p-5 shadow-lg rounded">
+        <div class="container text-center mt-5">
+            <div class="py-4 mt-5 rounded" style="border: 2px solid white;">
                 <h2 class="display-4 mb-4">Oops!</h2>
                 <p class="lead">You haven't created any resume yet. Please go ahead and create a resume to download it here.</p>
-                <a href="{% url 'resume_form' %}" class="btn btn-primary btn-lg mt-3">Create Your Resume</a>
+                <a href="{% url 'resume_form' %}" class="btn btn-custom btn-lg mt-3">Create Your Resume</a>
             </div>
         </div>
 

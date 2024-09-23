@@ -6,53 +6,60 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}ResumeCrafter{% endblock %}</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=B612+Mono:ital,wght@0,400;0,700;1,400;1,700&family=M+PLUS+Code+Latin:wght@100..700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'resume/styles.css' %}">
-</head>
+    {% block custom_styles %}
+    <style>
+        body {
+            overflow: hidden; /* Default style */
+        }
+    </style>
+    {% comment %} <link rel="shortcut icon" type="image/png" href="{% static 'food/LOGO.png' %}"> {% endcomment %}
+    {% endblock %}
+</head> 
 <body class="bg-dark text-light">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
-        <a class="navbar-brand" href="{% url 'home' %}">
+    <nav class="navbar navbar-dark mx-3">
+        <a class="navbar-brand mt-2" href="{% url 'home' %}">
             <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-file-person mb-1" viewBox="0 0 16 16">
                 <path d="M12 1a1 1 0 0 1 1 1v10.755S12 11 8 11s-5 1.755-5 1.755V2a1 1 0 0 1 1-1zM4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
                 <path d="M8 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
-              </svg>
-            <b>ResumeCrafter</b>
+            </svg>
+            <span>ResumeCrafter</span>
         </a>
-        <div class="ml-auto d-flex align-items-center">
+
+        <div class="ml-auto d-flex align-items-center ">
+            {% if messages %}
+            <div class="message-container mr-3 mt-1 text-light text-right">
+                {% for message in messages %}
+                <span class="typewriter">{{ message }}</span>
+                {% endfor %}
+            </div>            
+            {% endif %}
+    
             {% if user.is_authenticated %}
-                <span class="text-light mr-3">Hello, {{ user.username }}! 😎</span>
-                <a href="{% url 'logout' %}" class="btn btn-outline-light">Logout</a>
+                {% if not messages %}
+                    <span >Hello, <span style="color: #418da6;">{{ user.username }}</spna>!😎</span>
+                {% endif %}
+                <a href="{% url 'logout' %}" class="btn btn-outline-light ml-2 mb-1">Logout</a>
             {% else %}
-                <a href="{% url 'login' %}" class="btn btn-outline-light">Login</a>
+                <a href="{% url 'login' %}" class="btn btn-outline-light ml-2">Login</a>
             {% endif %}
         </div>
-        
     </nav>
-
-    <div class="content mb-0">
-        {% if messages %}
-          {% for message in messages %}
-            <div class="alert alert-{{ message.tags }} text-center" style="background: #f0ad4e;">
-              <b>{{ message }}</b>
-            </div>
-          {% endfor %}
-        {% endif %}
-      </div>
-      
     {% block content %}
-    <div class="container py-4">
-        <div class="d-flex justify-content-center align-items-center" style="height: 80vh;">
-            <div class="text-center">
-                <h1 class="display-4">Welcome to the ResumeCrafter</h1>
-                <p class="lead">Create your resume in simple steps</p>
-                <a href="{% url 'resume_form' %}" class="btn btn-primary btn-lg mx-2">Start Creating Your Resume</a>
-                <a href="{% url 'resumes' %}" class="btn btn-info btn-lg mx-2">Download Your Resume</a>
-            </div>
-        </div>
-    </div>
+    
     {% endblock %}
 
+    {% block custom_scripts %}
+        <script>
+     
+        </script>
+    {% endblock %}
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
 </body>
 </html>

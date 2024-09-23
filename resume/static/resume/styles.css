@@ -1,102 +1,169 @@
 /* Global Styles */
 body {
-    background-color: #121212;
-    color: #e0e0e0;
+    position: relative;
+    overflow: hidden;
+    font-family: "M PLUS Code Latin", monospace;
+    font-optical-sizing: auto;
 }
 
-.navbar {
-    border-bottom: 1px solid #444;
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('/static/resume/opoy7.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    filter: blur(1px); 
+    z-index: -1;
 }
 
-.nav-link {
-    color: #e0e0e0;
+
+/* HOME PAGE BUTTONS  */
+.btn-custom {
+    background-color: transparent; 
+    border: 4px solid #0d2c50;
+    padding: 7px 14px;
+    color: white;
+    background: linear-gradient(135deg, rgba(13, 44, 80, 08), rgba(0, 0, 0, 0.7));
+    background-size: 200% 200%; /* Makes the gradient larger for animation */
+    transition: background-position 0.4s ease, border-color 0.4s ease; /* Transition for background position */
+    background-position: left center; /* Initial position of the gradient */
 }
 
-.nav-link:hover {
-    color: #ffffff;
+.btn-custom:hover {
+    background-position: right center; /* Move to the right on hover */
+    border-color: #05253a;
+    color: white;
 }
 
-.btn-primary {
-    background-color: #7738ee;
-    border-color: #7738ee;
+
+/* NAV MESSAGE */
+.message-container {
+    white-space: nowrap;
+    overflow: hidden;
+    text-align: right;
 }
 
-.btn-primary:hover {
-    background-color: #5a2d8c;
-    border-color: #5a2d8c;
+.typewriter {
+    display: inline-block;
+    font-family: monospace;
+    font-size: 1.1em;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 2px solid white; /* Cursor on the right */
+    width: 0;
+    animation: typing 3.5s steps(40, end) forwards, blink 1s step-end infinite;
+    text-align: left; /* Align text left within the container */
 }
 
-.btn-info {
-    background-color: #8e44ad;
-    border-color: #8e44ad;
+@keyframes typing {
+    from { width: 0; }
+    to { width: 100%; }
 }
 
-.btn-info:hover {
-    background-color: #6d2c91;
-    border-color: #6d2c91;
+@keyframes blink {
+    50% { border-color: transparent; }
+    100% { border-color: white; }
 }
 
-h1, p {
-    color: #e0e0e0;
+
+/* NAV TITLE AND LOGO  */
+.navbar-brand svg {
+    transition: transform 0.3s ease; /* Add smooth scaling to the icon */
 }
 
-.container {
-    margin-top: 20px;
+.navbar-brand:hover svg {
+    transform: scale(1.2); /* Slightly enlarge the icon on hover */
 }
 
-/* Form Styles */
-.form-control {
-    background-color: #1f1f1f;
-    color: #e0e0e0;
-    border: 1px solid #444;
+.navbar-brand span {
+    position: relative;
+    display: inline-block;
+    transition: color 0.3s ease;
 }
 
-.form-control:focus {
-    background-color: #1f1f1f;
-    color: #e0e0e0;
-    border-color: #7738ee;
-    box-shadow: 0 0 0 0.2rem rgba(119, 56, 238, 0.25);
+.navbar-brand span::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -3px; /* Position underline slightly below the text */
+    background-color: #418da6; /* Color of the underline */
+    left: 50%; /* Start the underline from the center */
+    transition: width 0.4s ease, left 0.4s ease;
 }
 
-.btn {
-    border-radius: 5px;
+.navbar-brand span:hover::after {
+    width: 100%; /* Expand to the full width of the text */
+    left: 0; /* Move left back to 0 to ensure it covers the whole text */
 }
 
-hr {
-    border-color: #444;
+
+/* LOGIN & LOGOUT BUTTON */
+.btn-outline-light {
+    background-color: transparent;
+    transition: background 0.8s ease, color 0.8s ease; /* Keep original styles, just add this line */
 }
 
-.alert-danger {
-    background-color: #e74c3c;
-    color: #fff;
-    border-color: #d9534f;
+.btn-outline-light:hover {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.3), transparent);
+    color: white;
 }
 
-/* Resume Card Styles */
-.resume-card {
-    margin-bottom: 20px;
-    padding: 20px;
+
+/* CUSTOM INPUTS FIELD */
+.custom-input {
+    background-color: transparent; /* Make background transparent */
+    border: 2px solid white;       /* White border */
+    color: white;                  /* White text color */
+    border-radius: 5px;            /* Optional: round the edges */
+    padding: 10px;                 /* Space around text */
+    font-size: 1em;                /* Font size */
+}
+
+.custom-input::placeholder {
+    color: rgba(255, 255, 255, 0.7); /* Lighter white for placeholder text */
+}
+
+.custom-input:focus {
+    background-color: transparent;
+    border-color: #418da6; /* Optional: change border color on focus */
+    color: white; 
+}
+
+/* CUSTOM SELECT FIELD */
+
+.custom-select {
+    background-color: transparent;
+    color: white;
+    border: 2px solid white; /* Optional: To maintain visibility of the border */
+}
+
+.custom-select option {
+    background-color: black; /* Use a color for the options background */
+    
+    color: white; /* White text for options */
+}
+
+.custom-select::after {
+    border-color: #418da6;
+}
+
+.custom-input::-webkit-calendar-picker-indicator {
+    background-color: white; /* Transparent background for the date picker icon */
+    color: red; /* Icon color */
+    font-size: 16px;
+
+}
+
+/* RESUME CARD */
+.resume-card{
+    margin-top: 30px;
+    border: 2px solid white;
+    padding: 10px;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    background-color: #8e44ad;
-}
-
-.resume-card h4 {
-    margin-bottom: 10px;
-}
-
-.resume-card p {
-    margin: 5px 0;
-}
-
-.download-btn {
-    font-size: 1em;
-    padding: 10px 20px;
-    border-radius: 5px;
-    text-align: center;
-}
-
-.download-btn:hover {
-    background-color: white;
-    color: #fff;
 }

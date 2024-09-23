@@ -8,6 +8,8 @@ from django.db import IntegrityError
 import pdfkit
 from django.template import loader
 from django.http import HttpResponse
+from django.http import HttpResponseRedirect
+from django.utils import timezone
 
 # Create your views here.
 def register(request):
@@ -16,11 +18,14 @@ def register(request):
         if form.is_valid():
             form.save()
             username = form.cleaned_data.get('username').lower()
-            messages.success(request, f"Congratulations, {username}! Your account has been successfully crafted. Let’s build your resume!")
+            messages.success(request, f"Congrats, {username}! Your account has been successfully crafted.")
             return redirect('login')
     else:
         form = RegisterForm()
-    return render(request, 'resume/register.html', {'form': form})
+    first_error = None
+    if form.errors:
+        first_error = next(iter(form.errors.values()))[0] if form.errors else None
+    return render(request, 'resume/register.html', {'form': form, 'first_error': first_error})
 
 def login_view(request):
     if request.method == 'POST':
@@ -29,7 +34,7 @@ def login_view(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            messages.success(request, f"Hello again, {username}! Let's get crafting that perfect resume!")
+            messages.success(request, f"Welcome, {username}! Let's get crafting that perfect resume!")
             return redirect('home')
         else:
             # Invalid login credentials
@@ -43,13 +48,15 @@ def logout_view(request):
     return redirect('home')
 
 def home_view(request):
-    return render(request, 'resume/base.html')
+    return render(request, 'resume/home.html')
+
 
 @login_required
 def resume_form(request):
     if request.method == 'POST':
         profile_data = {
             'full_name': request.POST.get('full_name'),
+            'date': timezone.now(),  # Current date
             'email': request.POST.get('email'),
             'phone_number': request.POST.get('phone_number'),
             'linkedin': request.POST.get('linkedin'),
@@ -81,7 +88,7 @@ def resume_form(request):
             'grade_type_12': request.POST.get('grade_type_12'),
             'percentage_12': request.POST.get('percentage_12') or None,
 
-
+            # College
             'college': request.POST.get('college'),
             'college_location': request.POST.get('college_location'),
             'degree_college': request.POST.get('degree_college'),
@@ -91,8 +98,7 @@ def resume_form(request):
             'grade_type_college': request.POST.get('grade_type_college'),
             'percentage_college': request.POST.get('percentage_college') or None,
 
-            # Skills (renamed from `skill_name`)
-
+            # Skills
             'languages': request.POST.get('languages'),
             'frameworks': request.POST.get('frameworks'),
             'other_skills': request.POST.get('other_skills'),
@@ -101,8 +107,7 @@ def resume_form(request):
             'project_title_1': request.POST.get('project_title_1'),
             'project_description_1': request.POST.get('project_description_1'),
             'technologies_used_1': request.POST.get('technologies_used_1'),
-            'project_link_1': request.POST.get('project_link_1')
-            ,
+            'project_link_1': request.POST.get('project_link_1'),
             'project_title_2': request.POST.get('project_title_2'),
             'project_description_2': request.POST.get('project_description_2'),
             'technologies_used_2': request.POST.get('technologies_used_2'),
@@ -124,25 +129,17 @@ def resume_form(request):
             'job_description_2': request.POST.get('job_description_2'),  
 
             'award': request.POST.get('award'), 
-
             'certifications': request.POST.get('certifications')  
         }
-        # Profile.objects.create(**profile_data)
-        # return redirect('resumes')
 
         user = request.user
 
         try:
-            # Update or create the UserData object
-            user_data, created = Profile.objects.update_or_create(
-                user=user,
-                defaults=profile_data
-            )
-            # Redirect to a success page or another URL
-            return redirect('resumes')  # Replace 'success_url' with your actual success URL
-        
+            # Create a new profile for the user
+            Profile.objects.create(user=user, **profile_data)
+            return redirect('resumes')  # Replace 'resumes' with your actual redirect URL
+
         except IntegrityError as e:
-            # Handle database integrity error (e.g., unique constraint violations)
             print("Error saving data:", e)
             return render(request, 'resume/resume_form.html', {'error': 'There was an error saving your data. Please try again.'})
 

@@ -1,0 +1,14 @@
+{% extends 'resume/base.html' %}
+
+{% block content %}
+<div class="container-fluid vh-100 d-flex justify-content-center align-items-center">
+    <div class="text-center" style="margin-top: -100px;"> <!-- Adjust the value as needed -->
+        <h1 class="display-4">Welcome to the <span class="font-weight-bold"><span style="color: #418da6;">Resume</span>Crafter</span></h1>
+        <a href="{% url 'resume_form' %}" class="btn btn-custom btn-md mx-2 my-3">Create Your Resume</a>
+        <a href="{% url 'resumes' %}" class="btn btn-custom btn-md mx-2 my-3">Download Your Resume</a>
+    </div>
+</div>
+
+
+
+{% endblock %}
