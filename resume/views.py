@@ -8,7 +8,6 @@ from django.db import IntegrityError
 import pdfkit
 from django.template import loader
 from django.http import HttpResponse
-from django.http import HttpResponseRedirect
 from django.utils import timezone
 
 # Create your views here.
@@ -108,10 +107,21 @@ def resume_form(request):
             'project_description_1': request.POST.get('project_description_1'),
             'technologies_used_1': request.POST.get('technologies_used_1'),
             'project_link_1': request.POST.get('project_link_1'),
+
             'project_title_2': request.POST.get('project_title_2'),
             'project_description_2': request.POST.get('project_description_2'),
             'technologies_used_2': request.POST.get('technologies_used_2'),
             'project_link_2': request.POST.get('project_link_2'),
+
+            'project_title_3': request.POST.get('project_title_3'),
+            'project_description_3': request.POST.get('project_description_3'),
+            'technologies_used_3': request.POST.get('technologies_used_3'),
+            'project_link_3': request.POST.get('project_link_3'),
+
+            'project_title_4': request.POST.get('project_title_4'),
+            'project_description_4': request.POST.get('project_description_4'),
+            'technologies_used_4': request.POST.get('technologies_used_4'),
+            'project_link_4': request.POST.get('project_link_4'),
 
             # Work Experience
             'job_title_1': request.POST.get('job_title_1'),
@@ -126,7 +136,14 @@ def resume_form(request):
             'company_name_2': request.POST.get('company_name_2'),
             'start_date_2': request.POST.get('start_date_2') or None,
             'end_date_2': request.POST.get('end_date_2') or None,
-            'job_description_2': request.POST.get('job_description_2'),  
+            'job_description_2': request.POST.get('job_description_2'), 
+
+            'job_title_3': request.POST.get('job_title_3'),
+            'job_mode_3': request.POST.get('job_mode_3'),  
+            'company_name_3': request.POST.get('company_name_3'),
+            'start_date_3': request.POST.get('start_date_3') or None,
+            'end_date_3': request.POST.get('end_date_3') or None,
+            'job_description_3': request.POST.get('job_description_3'),
 
             'award': request.POST.get('award'), 
             'certifications': request.POST.get('certifications')  
