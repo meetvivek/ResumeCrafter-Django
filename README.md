@@ -4,7 +4,7 @@
 
 **ResumeCrafter** is a Django-based web application that allows users to create, download, and manage resumes dynamically. Users can log in, fill out a custom form to generate their resume, and download it as a PDF. Each user can create multiple resumes with dynamic sections for projects and work experiences.
 
-The project is live at: [https://resumecrafter.up.railway.app/](https://resumecrafter.up.railway.app/)
+The project is live at: <a href="https://resumecrafter.up.railway.app/" target="_blank">https://resumecrafter.up.railway.app/</a>
 
 ## Features
 
