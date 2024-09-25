@@ -1,3 +1,57 @@
+
+@media (max-width: 768px) {
+    /* Adjust heading size for smaller screens */
+    .display-4 {
+        font-size: 2.5rem; /* Smaller font size for mobile */
+    }
+
+    .message-container {
+        text-align: center; /* Center align messages for mobile */
+    }
+
+    .navbar-brand span {
+        font-size: 1.2rem; /* Adjust navbar brand font size */
+    }
+
+    .resume-card {
+        margin: 20px; /* Add margin for smaller screens */
+    }
+    .btn-custom {
+        font-size: 13px;      /* Even smaller font size for small screens */
+        padding: 5px 10px;     /* Further reduce padding */
+        border-width: 2px;
+    }
+
+    .btn-custom.btn-md {
+        padding: 5px 10px; 
+    }    /* Even smaller padding for very small devices */
+   
+}
+@media (min-width: 1001px) {
+    .d-custom-block {
+        display: block !important; /* Show the message on screens 865px and wider */
+    }
+    
+}
+
+@media (max-width: 1000px) {
+    .d-custom-block {
+        display: none !important; /* Hide the message on screens smaller than 865px */
+    }
+}
+
+@media (min-width: 501px) {
+    .dd-custom-block {
+        display: block !important; /* Show the message on screens 865px and wider */
+    }
+    
+}
+@media (max-width: 500px) {
+    .dd-custom-block {
+        display: none !important; /* Hide the message on screens smaller than 865px */
+    }
+}
+
 /* Global Styles */
 body {
     position: relative;
@@ -58,12 +112,17 @@ body::before {
     color: white;
 }
 
+@media (max-width: 600px) {
+    .btn-custom, .btn-custom-danger {
+        font-size: 12px; /* or any size that may differ from your default */
+    }
+}
 
 /* NAV MESSAGE */
 .message-container {
     white-space: nowrap;
     overflow: hidden;
-    text-align: right;
+    text-align: center;
 }
 
 .typewriter {
@@ -73,9 +132,9 @@ body::before {
     white-space: nowrap;
     overflow: hidden;
     border-right: 2px solid white; /* Cursor on the right */
-    width: 0;
+    width: auto;
     animation: typing 3.5s steps(40, end) forwards, blink 1s step-end infinite;
-    text-align: left; /* Align text left within the container */
+    text-align: center; /* Align text left within the container */
 }
 
 @keyframes typing {

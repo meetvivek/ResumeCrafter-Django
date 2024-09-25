@@ -211,13 +211,14 @@
                 {% else %}
                     <strong>{{ user_profile.project_title_1 }}</strong> | {{ user_profile.technologies_used_1 }}
                 {% endif %}
-                <ul class="">
+                <ul>
                     {% for point in user_profile.project_description_1|split_newline %}
                         <li class="small">{{ point }}</li>
                     {% endfor %}
                 </ul>
             </div>
-            {% if user_profile.project_title_2 is not None and user_profile.project_title_2 != "" %}
+
+            {% if user_profile.project_title_2 is not None and user_profile.project_title_2 != "" and user_profile.project_description_2 is not None and user_profile.project_description_2 != ""%}
             <div class="item mb-0 mt-0">
                 {% if user_profile.project_link_2 is not None and user_profile.project_link_2 != "" %}
                     <strong><u><a href="{{ user_profile.project_link_2 }}" class="redirect-link" target="_blank">{{ user_profile.project_title_2 }}</u> <i class="fas fa-external-link-alt fa-sm mb-1"></i></a></strong> | <em>{{ user_profile.technologies_used_2 }}</em>
@@ -231,11 +232,41 @@
                 </ul>
             </div>
             {% endif %}
+
+            {% if user_profile.project_title_3 is not None and user_profile.project_title_3 != "" and user_profile.project_description_3 is not None and user_profile.3 != ""%}
+            <div class="item mb-0 mt-0">
+                {% if user_profile.project_link_3 is not None and user_profile.project_link_3 != "" %}
+                    <strong><u><a href="{{ user_profile.project_link_3 }}" class="redirect-link" target="_blank">{{ user_profile.project_title_3 }}</u> <i class="fas fa-external-link-alt fa-sm mb-1"></i></a></strong> | <em>{{ user_profile.technologies_used_3 }}</em>
+                {% else %}
+                    <strong>{{ user_profile.project_title_3 }}</strong> | <em>{{ user_profile.technologies_used_3 }}</em>
+                {% endif %}
+                <ul class="mb-0">
+                    {% for point in user_profile.project_description_3|split_newline %}
+                        <li class="small">{{ point }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+
+            {% if user_profile.project_title_4 is not None and user_profile.project_title_4 != "" and user_profile.project_description_4 is not None and user_profile.4 != ""%}
+            <div class="item mb-0 mt-0">
+                {% if user_profile.project_link_4 is not None and user_profile.project_link_4 != "" %}
+                    <strong><u><a href="{{ user_profile.project_link_4 }}" class="redirect-link" target="_blank">{{ user_profile.project_title_4 }}</u> <i class="fas fa-external-link-alt fa-sm mb-1"></i></a></strong> | <em>{{ user_profile.technologies_used_4 }}</em>
+                {% else %}
+                    <strong>{{ user_profile.project_title_4 }}</strong> | <em>{{ user_profile.technologies_used_4 }}</em>
+                {% endif %}
+                <ul class="mb-0">
+                    {% for point in user_profile.project_description_4|split_newline %}
+                        <li class="small">{{ point }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
         </div>
 
         <!-- Work Experience Section -->
         <div>
-            {% if user_profile.job_title_1 != None and user_profile.job_title_1 != "" %}
+            {% if user_profile.job_title_1 != None and user_profile.job_title_1 != "" and user_profile.company_name_1 != None and user_profile.company_name_1 != "" and user_profile.job_description_1 != None and user_profile.job_description_1 != "" %}
                 <h5 class="text-danger mb-0 mt-2">Work Experience</h5><hr class="mt-0 mb-1 red-hr" >
                 <div class="mb-0">
                     <strong>{{ user_profile.company_name_1 }}</strong>
@@ -257,7 +288,7 @@
                 </div>
             {% endif %}
 
-            {% if user_profile.job_title_2 is not None and user_profile.job_title_2 != "" %}
+            {% if user_profile.job_title_2 is not None and user_profile.job_title_2 != "" and user_profile.company_name_2 != None and user_profile.company_name_2 != "" and user_profile.job_description_2 != None and user_profile.job_description_2 != "" %}
             <div class="">
                 <strong>{{ user_profile.company_name_2 }}</strong>
                 <span class="small" style="float: right;">{{ user_profile.start_date_2 }} - {{ user_profile.end_date_2 }}</span>
@@ -268,6 +299,23 @@
                 </p>
                 <ul class="">
                     {% for point in user_profile.job_description_2|split_newline %}
+                        <li class="small">{{ point }}</li>
+                    {% endfor %}
+                </ul>
+            </div> 
+            {% endif %}
+
+            {% if user_profile.job_title_3 is not None and user_profile.job_title_3 != "" and user_profile.company_name_3 != None and user_profile.company_name_3 != "" and user_profile.job_description_3 != None and user_profile.job_description_3 != "" %}
+            <div class="">
+                <strong>{{ user_profile.company_name_3 }}</strong>
+                <span class="small" style="float: right;">{{ user_profile.start_date_3 }} - {{ user_profile.end_date_3 }}</span>
+                <p class="small mb-0">
+                    <em><u>{{ user_profile.job_title_3 }}</u>
+                        <span style="float: right;">{{ user_profile.job_mode_3 }}</span>
+                    </em>
+                </p>
+                <ul class="">
+                    {% for point in user_profile.job_description_3|split_newline %}
                         <li class="small">{{ point }}</li>
                     {% endfor %}
                 </ul>
