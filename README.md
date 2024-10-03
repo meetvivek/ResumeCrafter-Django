@@ -14,7 +14,7 @@ The project is live at: <a href="https://resumecrafter.up.railway.app/" target="
 - **PDF Generation**: Resumes are generated as PDFs using `pdfkit` and `wkhtmltopdf`, based on a dynamically rendered HTML template.
 - **Multiple Resume Support**: Each user can create and manage multiple resumes.
 - **Deployment**: The project is containerized with Docker and deployed on Railway.
-- **Future Updates**: Multiple resume templates will be available in the future for added customization.
+- **Future Updates**: Expect multiple resume templates for added customization and an edit functionality for resumes to enhance user experience.
 - **Responsive Design**: The project is fully responsive, ensuring optimal viewing across all screen sizes, and designed with a great user experience in mind.
 
 ## Unique Resume Template
@@ -36,7 +36,7 @@ While the template is not shared in the GitHub repository, it has been crafted w
 
 I will be sharing a detailed post on LinkedIn about this project along with a video explaining its features and implementation. Stay tuned!
 
-**LinkedIn Post**: [Link to LinkedIn Post](#) (Link to be updated soon)
+**LinkedIn Post**: [Link to LinkedIn Post](https://www.linkedin.com/posts/meet-vivek_django-resumecrafter-webdevelopment-activity-7247462891451232259-uyWt?utm_source=share&utm_medium=member_desktop)
 
 
 ## Getting Started
